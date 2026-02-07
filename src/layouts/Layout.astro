@@ -34,13 +34,30 @@ const personSchema = {
   "@type": "Person",
   "name": fullName,
   "url": siteUrl,
+  "image": `${siteUrl}/vashanth.jpg`,
   "sameAs": [
     "https://github.com/Vashanth",
     "https://www.linkedin.com/in/vashanth-s"
   ],
-  "jobTitle": "Software Engineer",
+  "jobTitle": "Software Development Engineer",
   "description": description,
-  "email": "2000.vashanth@gmail.com"
+  "email": "2000.vashanth@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bangalore",
+    "addressRegion": "KA",
+    "addressCountry": "IN"
+  },
+  "knowsAbout": [
+    "Software Development",
+    "Full Stack Development",
+    "Golang",
+    "JavaScript",
+    "Web Architecture",
+    "API Design",
+    "React",
+    "Node.js"
+  ]
 };
 
 import { ClientRouter } from 'astro:transitions';

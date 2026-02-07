@@ -13,9 +13,9 @@ const {
   canonicalUrl = Astro.url.href
 } = Astro.props;
 
-const fullName = "Vashanth S";
+const fullName = "Vashanth Saravanan";
 const siteUrl = "https://vashanth.github.io";
-const pageTitle = title.includes(fullName) ? title : `${fullName} – ${title}`;
+const pageTitle = title.includes(fullName) ? title : `${fullName} – ${title} | Full Stack Developer | Golang, React & Node.js`;
 const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
 const navLinks = [
@@ -75,6 +75,7 @@ import { ClientRouter } from 'astro:transitions';
     <meta name="twitter:image" content={fullOgImage} />
     
     <!-- Additional SEO -->
+    <meta name="google-site-verification" content="NbL7pnpj_wPFRPIyKCfl461WXNT0ocI6urGgtNJGEaQ" />
     <meta name="author" content={fullName} />
     <meta name="robots" content="index, follow" />
     

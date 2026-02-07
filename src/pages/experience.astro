@@ -1,0 +1,137 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const experiences = [
+  {
+    company: 'Wayground (Quizizz)',
+    role: 'Software Engineer',
+    period: 'Nov 2023 - Present',
+    location: 'Bengaluru, India',
+    description: 'Building scalable EdTech systems serving millions of students and educators worldwide.',
+    highlights: [
+      'Developed multiple frontend features using Vue.js, including Corporate AI Studio and Interactive Videos.',
+      'Transitioned to backend-focused role in Common Assessment, a district-wide high-scale test delivery platform, working in Golang.',
+      'Improved teacher-facing UI to streamline quiz and question creation workflows.'
+    ],
+    current: true
+  },
+  {
+    company: 'Postman',
+    role: 'Software Engineer',
+    period: 'July 2021 - Nov 2023',
+    location: 'Bengaluru, India',
+    description: 'Full-stack developer on Public and Private API Networks.',
+    highlights: [
+      'Built critical features for developer collaboration platform using React, Node.js (Sails JS), and AWS.',
+      'Improved API discovery and collaboration tools for millions of developers.'
+    ]
+  },
+  {
+    company: 'Postman',
+    role: 'Software Engineer Intern',
+    period: 'Feb 2021 - June 2021',
+    description: 'Gained hands-on experience with full-stack development and industry best practices.'
+  }
+];
+
+const education = [
+  {
+    degree: 'B.Tech in Computer Science',
+    institution: 'SASTRA University',
+    period: '2017 - 2021',
+    honors: "CGPA: 9.1 | Top 2% of class",
+    description: 'Focused on software engineering and algorithms. Winner of Smart Transaction Hackathon (PayPal).'
+  }
+];
+---
+
+<Layout 
+  title="Experience"
+  description="Professional experience and education of Vashanth S, including roles at Wayground (Quizizz) and Postman."
+>
+  <section class="section-container pt-32 pb-24">
+    <div class="max-w-3xl space-y-6 mb-20 animate-in">
+      <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-accent">Career</h2>
+      <h1 class="text-gradient font-extrabold leading-tight">Professional Experience</h1>
+      <p class="text-xl text-text-secondary leading-relaxed">
+        My professional journey building scalable systems and impactful products.
+      </p>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="space-y-12 mb-32">
+      {experiences.map((exp, index) => (
+        <article 
+          class="relative pl-8 md:pl-0"
+        >
+          <!-- Timeline side info (desktop) -->
+          <div class="md:grid md:grid-cols-4 gap-12 group">
+            <div class="hidden md:block text-right pt-2">
+              <span class="text-xs font-bold uppercase tracking-widest text-text-tertiary">{exp.period}</span>
+            </div>
+            
+            <div class="md:col-span-3 pb-12 border-l border-zinc-800/50 md:pl-12 relative">
+              <!-- Timeline Dot -->
+              <div class={`absolute -left-[5px] top-3 w-[9px] h-[9px] rounded-full ring-4 ${exp.current ? 'bg-accent ring-accent/20' : 'bg-zinc-700 ring-bg-primary'}`}></div>
+              
+              <div class="space-y-6">
+                <div class="space-y-1">
+                  <div class="md:hidden mb-2">
+                     <span class="text-xs font-bold uppercase tracking-widest text-accent">{exp.period}</span>
+                  </div>
+                  <h3 class="text-2xl font-bold text-text-primary tracking-tight group-hover:text-accent transition-colors">
+                    {exp.company}
+                  </h3>
+                  <p class="text-lg font-medium text-text-secondary">{exp.role}</p>
+                </div>
+
+                <p class="text-text-tertiary leading-relaxed max-w-2xl">
+                  {exp.description}
+                </p>
+
+                {exp.highlights && (
+                  <ul class="space-y-4">
+                    {exp.highlights.map(highlight => (
+                      <li class="flex items-start gap-4 text-sm font-medium text-text-secondary leading-relaxed max-w-xl">
+                        <span class="mt-2 w-1.5 h-1.5 rounded-full bg-zinc-700 shrink-0"></span>
+                        {highlight}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Education -->
+    <div class="pt-24 border-t border-zinc-800/50">
+      <div class="max-w-3xl space-y-6 mb-16 animate-in">
+        <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-accent">Education</h2>
+        <h2 class="text-3xl font-bold tracking-tight text-text-primary">Academic Background</h2>
+      </div>
+
+      <div class="space-y-8 max-w-4xl">
+        {education.map((edu) => (
+          <div class="glass-card p-8 md:p-12">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+              <div class="space-y-1">
+                <h3 class="text-xl font-bold text-text-primary">{edu.institution}</h3>
+                <p class="text-lg font-medium text-text-secondary">{edu.degree}</p>
+              </div>
+              <div class="text-right">
+                <span class="text-sm font-bold text-accent">{edu.period}</span>
+                <p class="text-xs font-bold text-text-tertiary mt-1 uppercase tracking-widest">{edu.honors}</p>
+              </div>
+            </div>
+            <p class="text-text-tertiary leading-relaxed text-sm font-medium max-w-2xl">
+              {edu.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

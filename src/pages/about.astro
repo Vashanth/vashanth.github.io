@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const values = [
+  {
+    title: 'Systems Thinking',
+    description: 'I approach problems holistically, understanding how components interact and scale.',
+    icon: '🔄'
+  },
+  {
+    title: 'Ownership',
+    description: 'End-to-end responsibility from design to deployment and beyond.',
+    icon: '🎯'
+  },
+  {
+    title: 'Impact Focus',
+    description: 'Building products and features that solve real problems for real users.',
+    icon: '⚡'
+  },
+  {
+    title: 'Continuous Learning',
+    description: 'Always exploring new technologies and improving my craft.',
+    icon: '📚'
+  }
+];
+---
+
+<Layout 
+  title="About"
+  description="Learn more about Vashanth S - a software engineer at Wayground, passionate about building scalable EdTech systems."
+>
+  <section class="section-container pt-32 pb-24">
+    <div class="max-w-3xl space-y-6 mb-20 animate-in">
+      <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-accent">About</h2>
+      <h1 class="text-gradient font-extrabold leading-tight">Software Engineer, <br />Systems Thinker.</h1>
+    </div>
+
+    <div class="space-y-32">
+      <!-- Bio -->
+      <article class="max-w-3xl animate-in">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start mb-12">
+          <div class="md:col-span-1">
+             <div class="sticky top-32">
+               <img 
+                 src="/vashanth.jpg" 
+                 alt="Vashanth S" 
+                 transition:name="hero-photo"
+                 class="w-full aspect-[3/4] rounded-2xl object-cover border border-zinc-800 shadow-2xl grayscale hover:grayscale-0 transition-all duration-500"
+               />
+             </div>
+          </div>
+          <div class="md:col-span-2 prose prose-invert prose-zinc max-w-none space-y-8">
+            <p class="text-xl text-text-secondary leading-relaxed">
+              I'm a <strong class="text-text-primary">Software Engineer at Wayground (formerly Quizizz)</strong>, passionate about building 
+              scalable systems that impact millions. I believe in ownership and systems thinking.
+            </p>
+            
+            <p class="text-lg text-text-tertiary leading-relaxed">
+              Before Wayground, I spent nearly 3 years at <strong class="text-text-primary">Postman</strong> as a full-stack engineer 
+              working on API Network tools. My journey has transitioned from building polished frontend features in Vue.js to 
+              developing high-scale backend services in <strong class="text-text-primary">Golang</strong>.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Values -->
+      <div class="space-y-16 animate-in" style="animation-delay: 200ms">
+        <h2 class="text-3xl font-bold tracking-tight text-text-primary">Core Values</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {values.map((value) => (
+            <div class="glass-card p-8 space-y-4">
+              <div class="text-3xl">{value.icon}</div>
+              <h3 class="text-xl font-bold text-text-primary">{value.title}</h3>
+              <p class="text-text-secondary leading-relaxed text-sm font-medium">
+                {value.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Tech Stack -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 animate-in" style="animation-delay: 300ms">
+        <div class="space-y-6">
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-accent">Backend</h3>
+          <p class="text-text-secondary font-medium italic">High-performance, distributed, and scalable.</p>
+          <ul class="space-y-4 text-text-primary font-bold text-lg">
+            <li>Golang</li>
+            <li>Node.js (Sails JS)</li>
+            <li>SQL & NoSQL</li>
+            <li>AWS Architecture</li>
+            <li>API Design</li>
+          </ul>
+        </div>
+        <div class="space-y-6">
+          <h3 class="text-xs font-bold uppercase tracking-[0.2em] text-accent">Frontend</h3>
+          <p class="text-text-secondary font-medium italic">Polished, accessible, and performant.</p>
+          <ul class="space-y-4 text-text-primary font-bold text-lg">
+            <li>JavaScript / TypeScript</li>
+            <li>Vue.js</li>
+            <li>React</li>
+            <li>Tailwind CSS</li>
+            <li>System Performance</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="glass-card p-12 text-center space-y-8 animate-in" style="animation-delay: 400ms">
+        <h2 class="text-3xl font-bold text-text-primary text-gradient">Let's work together.</h2>
+        <p class="text-text-secondary max-w-xl mx-auto font-medium">
+          Whether it's a new opportunity or just a technical discussion, I'm always open to connecting.
+        </p>
+        <div class="pt-4">
+          <a 
+            href="/contact"
+            class="px-10 py-5 bg-white text-black font-extrabold rounded-full hover:bg-zinc-200 transition-all shadow-xl shadow-white/5"
+          >
+            Get in Touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

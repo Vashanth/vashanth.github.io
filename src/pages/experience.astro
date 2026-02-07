@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import postmanLogo from '../assets/postman.svg';
+import quizizzLogo from '../assets/quizizz.png';
 
 const experiences = [
   {
@@ -8,6 +11,7 @@ const experiences = [
     period: 'Nov 2023 - Present',
     location: 'Bengaluru, India',
     description: 'Building scalable EdTech systems serving millions of students and educators worldwide.',
+    logo: quizizzLogo,
     highlights: [
       'Developed multiple frontend features using Vue.js, including Corporate AI Studio and Interactive Videos.',
       'Transitioned to backend-focused role in Common Assessment, a district-wide high-scale test delivery platform, working in Golang.',
@@ -21,6 +25,7 @@ const experiences = [
     period: 'July 2021 - Nov 2023',
     location: 'Bengaluru, India',
     description: 'Full-stack developer on Public and Private API Networks.',
+    logo: postmanLogo,
     highlights: [
       'Built critical features for developer collaboration platform using React, Node.js (Sails JS), and AWS.',
       'Improved API discovery and collaboration tools for millions of developers.'
@@ -30,7 +35,8 @@ const experiences = [
     company: 'Postman',
     role: 'Software Engineer Intern',
     period: 'Feb 2021 - June 2021',
-    description: 'Gained hands-on experience with full-stack development and industry best practices.'
+    description: 'Gained hands-on experience with full-stack development and industry best practices.',
+    logo: postmanLogo
   }
 ];
 
@@ -75,14 +81,23 @@ const education = [
               <div class={`absolute -left-[5px] top-3 w-[9px] h-[9px] rounded-full ring-4 ${exp.current ? 'bg-accent ring-accent/20' : 'bg-zinc-700 ring-bg-primary'}`}></div>
               
               <div class="space-y-6">
-                <div class="space-y-1">
-                  <div class="md:hidden mb-2">
-                     <span class="text-xs font-bold uppercase tracking-widest text-accent">{exp.period}</span>
+                <div class="flex justify-between items-start gap-4">
+                  <div class="space-y-1 flex-1">
+                    <div class="md:hidden mb-2">
+                       <span class="text-xs font-bold uppercase tracking-widest text-accent">{exp.period}</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-text-primary tracking-tight group-hover:text-accent transition-colors">
+                      {exp.company}
+                    </h3>
+                    <p class="text-lg font-medium text-text-secondary">{exp.role}</p>
                   </div>
-                  <h3 class="text-2xl font-bold text-text-primary tracking-tight group-hover:text-accent transition-colors">
-                    {exp.company}
-                  </h3>
-                  <p class="text-lg font-medium text-text-secondary">{exp.role}</p>
+                  {exp.logo && (
+                    <Image 
+                      src={exp.logo} 
+                      alt={`${exp.company} logo`} 
+                      class="w-12 h-12 object-contain rounded-md bg-zinc-800/50 p-2 ring-1 ring-white/10"
+                    />
+                  )}
                 </div>
 
                 <p class="text-text-tertiary leading-relaxed max-w-2xl">

@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import vashanthImg from '../assets/vashanth.jpg';
 
 const highlights = [
   {
@@ -33,11 +35,14 @@ const skills = [
       <div class="flex flex-col md:flex-row md:items-center gap-8 mb-8">
         <div class="relative group">
           <div class="absolute -inset-1 bg-gradient-to-r from-accent to-indigo-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          <img 
-            src="/vashanth.jpg" 
+          <Image 
+            src={vashanthImg} 
             alt="Vashanth S" 
             transition:name="hero-photo"
             class="relative w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-zinc-800 shadow-2xl"
+            loading="eager"
+            width={128}
+            height={128}
           />
         </div>
         <div class="space-y-4">
@@ -101,7 +106,7 @@ const skills = [
       <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-12">
         {skills.map(skill => (
           <div class="space-y-4">
-            <h4 class="text-sm font-bold text-text-primary uppercase tracking-widest">{skill.category}</h4>
+            <h3 class="text-sm font-bold text-text-primary uppercase tracking-widest">{skill.category}</h3>
             <div class="flex flex-wrap gap-2">
               {skill.items.map(item => (
                 <span class="px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-md text-xs font-bold text-text-secondary">

@@ -61,6 +61,7 @@ const personSchema = {
 };
 
 import { ClientRouter } from 'astro:transitions';
+import Starfield from '../components/Starfield.astro';
 ---
 
 <!DOCTYPE html>
@@ -113,6 +114,7 @@ import { ClientRouter } from 'astro:transitions';
     </style>
   </head>
   <body class="selection:bg-accent/30 selection:text-white">
+    <Starfield id="starfield" transition:persist />
     <div class="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
       <nav 
         class="relative nav-blur nav-pill h-16 flex items-center justify-between w-full pointer-events-auto"

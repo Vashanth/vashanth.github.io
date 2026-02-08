@@ -49,6 +49,19 @@ const education = [
     description: 'Focused on software engineering and algorithms. Winner of Smart Transaction Hackathon (PayPal).'
   }
 ];
+
+const awards = [
+  {
+    title: 'Winner of Smart Transaction Hackathon (Daksh)',
+    institution: 'SASTRA University',
+    icon: '🏆'
+  },
+  {
+    title: "Dean's Merit Scholarship",
+    institution: 'SASTRA University',
+    icon: '🎖️'
+  }
+];
 ---
 
 <Layout 
@@ -144,6 +157,28 @@ const education = [
             <p class="text-text-tertiary leading-relaxed text-sm font-medium max-w-2xl">
               {edu.description}
             </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Honors & Awards -->
+    <div class="pt-24 border-t border-zinc-800/50">
+      <div class="max-w-3xl space-y-6 mb-16 animate-in">
+        <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-accent">Achievement</h2>
+        <h2 class="text-3xl font-bold tracking-tight text-text-primary">Honors & Awards</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+        {awards.map((award) => (
+          <div class="glass-card p-8 flex items-start gap-4">
+            <div class="text-accent text-3xl">
+              {award.icon}
+            </div>
+            <div class="space-y-2">
+              <h3 class="text-lg font-bold text-text-primary leading-tight">{award.title}</h3>
+              <p class="text-sm font-medium text-text-secondary">{award.institution}</p>
+            </div>
           </div>
         ))}
       </div>

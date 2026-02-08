@@ -211,8 +211,49 @@ import Starfield from '../components/Starfield.astro';
         }
       }
 
+      function updateActiveLinks() {
+        const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
+        const nav = document.querySelector('nav');
+        if (!nav) return;
+
+        const links = nav.querySelectorAll('a[href]');
+        links.forEach(link => {
+          const href = link.getAttribute('href').replace(/\/$/, '') || '/';
+          const isHomeLink = href === '/'; // Special handling for logo if needed, but assuming nav links
+          
+          // Skip the logo link which has class "group flex items-center gap-2"
+          if (link.classList.contains('group') && link.classList.contains('gap-2')) return;
+
+          const isActive = currentPath === href;
+
+          // Check if it's a mobile menu link (inside #mobile-menu)
+          const isMobile = link.closest('#mobile-menu');
+
+          if (isActive) {
+            if (isMobile) {
+              link.classList.remove('text-text-secondary', 'hover:text-white', 'hover:bg-white/5');
+              link.classList.add('bg-white/10', 'text-white');
+            } else {
+              link.classList.remove('text-text-secondary', 'hover:text-text-primary', 'hover:bg-white/5');
+              link.classList.add('text-text-primary', 'bg-white/10');
+            }
+          } else {
+            if (isMobile) {
+              link.classList.remove('bg-white/10', 'text-white');
+              link.classList.add('text-text-secondary', 'hover:text-white', 'hover:bg-white/5');
+            } else {
+              link.classList.remove('text-text-primary', 'bg-white/10');
+              link.classList.add('text-text-secondary', 'hover:text-text-primary', 'hover:bg-white/5');
+            }
+          }
+        });
+      }
+
       // Run on view transitions (and initial load)
-      document.addEventListener('astro:page-load', setupMobileMenu);
+      document.addEventListener('astro:page-load', () => {
+        setupMobileMenu();
+        updateActiveLinks();
+      });
     </script>
     
     <div class="pt-24"> <!-- Spacer for floating nav -->

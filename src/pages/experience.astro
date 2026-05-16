@@ -3,21 +3,33 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import postmanLogo from '../assets/postman.svg';
 import quizizzLogo from '../assets/quizizz.png';
+import docusignLogo from '../assets/docusign.png';
 
 const experiences = [
   {
+    company: 'Docusign',
+    role: 'Software Engineer III',
+    period: 'April 2026 - Present',
+    location: 'Bengaluru, India',
+    description: 'Working on Backend in the eSign reporting team.',
+    logo: docusignLogo,
+    highlights: [
+      'Backend development using C# and .NET.'
+    ],
+    current: true
+  },
+  {
     company: 'Wayground (Quizizz)',
     role: 'Software Engineer',
-    period: 'Nov 2023 - Present',
+    period: 'Nov 2023 - April 2026',
     location: 'Bengaluru, India',
-    description: 'Building scalable EdTech systems serving millions of students and educators worldwide.',
+    description: 'Building scalable EdTech systems serving millions of students and educators worldwide. Worked with Golang and Vue.',
     logo: quizizzLogo,
     highlights: [
       'Developed multiple frontend features using Vue.js, including Corporate AI Studio and Interactive Videos.',
       'Transitioned to backend-focused role in Common Assessment, a district-wide high-scale test delivery platform, working in Golang.',
       'Improved teacher-facing UI to streamline quiz and question creation workflows.'
-    ],
-    current: true
+    ]
   },
   {
     company: 'Postman',
@@ -66,7 +78,7 @@ const awards = [
 
 <Layout 
   title="Experience"
-  description="Professional experience and education of Vashanth S, including roles at Wayground (Quizizz) and Postman."
+  description="Professional experience and education of Vashanth Saravanan, including roles at Docusign, Wayground (Quizizz), and Postman."
 >
   <section class="section-container pt-32 pb-24">
     <div class="max-w-3xl space-y-6 mb-20 animate-in">

@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Read all photos starting with 'vashanth_' from the public directory
+const publicDir = path.join(process.cwd(), 'public');
+const files = fs.readdirSync(publicDir);
+const photoFiles = files.filter(file => file.startsWith('vashanth_') && /\.(jpeg|jpg|png|gif|webp)$/i.test(file));
+
+// Sort them so they appear in order (0, 1, 2, 3)
+photoFiles.sort();
+
+// Create the clean URLs
+const photos = photoFiles.map(file => `/${file}`);
+---
+
+<Layout 
+  title="Photos"
+  description="A collection of photos."
+>
+  <section class="section-container pt-32 pb-24 md:pt-48 md:pb-32">
+    <div class="max-w-5xl mx-auto space-y-8 animate-in">
+      <h1 class="font-display font-extrabold text-gradient text-4xl md:text-5xl mb-8">
+        Photos
+      </h1>
+      
+      {photos.length > 0 ? (
+        <div class="relative w-full aspect-[4/3] md:aspect-[16/9] bg-zinc-900 rounded-xl border border-zinc-800 shadow-2xl overflow-hidden group">
+          {photos.map((photoUrl, index) => (
+            <div 
+              class={`absolute inset-0 transition-opacity duration-700 ease-in-out slideshow-slide ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`} 
+              data-index={index}
+            >
+              <img 
+                src={photoUrl} 
+                alt={`Photo ${index + 1}`} 
+                class="w-full h-full object-contain"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+            </div>
+          ))}
+
+          {photos.length > 1 && (
+            <>
+              <!-- Controls -->
+              <button 
+                id="prev-slide" 
+                class="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-md border border-white/10 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                aria-label="Previous photo"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+              </button>
+              
+              <button 
+                id="next-slide" 
+                class="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-black/40 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-md border border-white/10 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                aria-label="Next photo"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+
+              <!-- Indicators -->
+              <div class="absolute bottom-4 left-0 right-0 z-20 flex justify-center gap-2">
+                {photos.map((_, index) => (
+                  <button 
+                    class={`slideshow-dot w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'bg-white w-4' : 'bg-white/40 hover:bg-white/70'}`}
+                    data-index={index}
+                    aria-label={`Go to slide ${index + 1}`}
+                  ></button>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      ) : (
+        <div class="p-8 text-center bg-zinc-900 rounded-xl border border-zinc-800">
+          <p class="text-text-secondary text-lg">No photos found.</p>
+        </div>
+      )}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  function initSlideshow() {
+    const slides = document.querySelectorAll('.slideshow-slide');
+    if (!slides.length) return;
+    
+    const dots = document.querySelectorAll('.slideshow-dot');
+    const prevBtn = document.getElementById('prev-slide');
+    const nextBtn = document.getElementById('next-slide');
+    
+    let currentIdx = 0;
+    
+    function goToSlide(index) {
+      if (slides.length <= 1) return;
+      
+      // Handle wrapping
+      if (index >= slides.length) index = 0;
+      if (index < 0) index = slides.length - 1;
+      
+      // Update slides
+      slides[currentIdx].classList.remove('opacity-100', 'z-10');
+      slides[currentIdx].classList.add('opacity-0', 'z-0');
+      
+      slides[index].classList.remove('opacity-0', 'z-0');
+      slides[index].classList.add('opacity-100', 'z-10');
+      
+      // Update dots
+      if (dots.length > 0) {
+        dots[currentIdx].classList.remove('bg-white', 'w-4');
+        dots[currentIdx].classList.add('bg-white/40');
+        
+        dots[index].classList.remove('bg-white/40');
+        dots[index].classList.add('bg-white', 'w-4');
+      }
+      
+      currentIdx = index;
+    }
+    
+    if (prevBtn) prevBtn.addEventListener('click', () => goToSlide(currentIdx - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => goToSlide(currentIdx + 1));
+    
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => goToSlide(idx));
+    });
+  }
+
+  // Initialize on initial page load and after view transitions
+  document.addEventListener('astro:page-load', initSlideshow);
+</script>

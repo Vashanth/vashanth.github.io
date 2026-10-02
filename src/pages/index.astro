@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { Image } from 'astro:assets';
-import vashanthImg from '../assets/vashanth.jpg';
+
 
 const highlights = [
   {
@@ -41,14 +40,12 @@ const skills = [
       <div class="flex flex-col md:flex-row md:items-center gap-8 mb-8">
         <div class="relative group">
           <div class="absolute -inset-1 bg-gradient-to-r from-accent to-indigo-500 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          <Image 
-            src={vashanthImg} 
-            alt="Vashanth Saravanan" 
+          <img
+            src="/vashanth-about.jpg"
+            alt="Vashanth Saravanan"
             transition:name="hero-photo"
             class="relative w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-2 border-zinc-800 shadow-2xl"
             loading="eager"
-            width={128}
-            height={128}
           />
         </div>
         <div class="space-y-4">
